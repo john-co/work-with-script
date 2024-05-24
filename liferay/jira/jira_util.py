@@ -161,6 +161,12 @@ def generate_description(type):
             + "Can be covered by POSHI?: Yes\n"
             + "# \n# \n# "
         )
+    
+def generate_task(type):
+    if type == "Task":
+        return (
+            "[Testray subtask|URL]\n"
+            + "{code:none}Error{code}")
 
 
 def get_project_components(jira_connection, project_key):

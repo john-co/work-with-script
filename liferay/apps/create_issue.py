@@ -15,6 +15,7 @@ def create_issue(
     description,
     issue_type,
     jira_connection,
+    parent_key,
     project_key,
     summary,
 ):
@@ -33,6 +34,7 @@ def create_issue(
     else:
         issue_dict = {
             "project": {"key": project_key},
+            "parent": {"key": parent_key},
             "summary": summary,
             "description": description,
             "components": [{"name": component}],
@@ -50,6 +52,7 @@ def main(
     description,
     issue_type,
     label,
+    parent_key,
     project_key,
     summary,
 ):
@@ -62,6 +65,7 @@ def main(
         description,
         issue_type,
         jira_connection,
+        parent_key,
         project_key,
         summary,
     )

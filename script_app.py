@@ -176,6 +176,7 @@ class ScriptApp(App):
 
                     yield Label("Project Key:", id="project-key-label-2")
                     yield Select(PROJECT_KEY, id="project-key-2")
+                    yield TextField("Parent Ticket:", "parent", "unselected")
                     yield Label("Issue Type:", id="issue-type-label")
                     yield Select(ISSUE_TYPE, id="issue-type")
                     yield Label("Bug Type:", id="bug-type-label", classes="unselected")
@@ -199,7 +200,7 @@ class ScriptApp(App):
                         "Description:", "issue-description", "unselected"
                     )
                     yield ToggleSwitch("assign-to-me-2")
-                    yield TextField("Add label (Optional)", "issue-label")
+                    yield TextField("Add label (Optional)", "issue-label", value="release-test-failure")
                     yield Submit("button-7")
                 with Form("nav-8"):
                     yield TextField(
@@ -305,6 +306,7 @@ class ScriptApp(App):
         description = self.query_one("#issue-description").text
         issue_type = self.query_one("#issue-type").value
         label = self.query_one("#issue-label").value
+        parent_key = self.query_one("#parent").value
         project_key = self.query_one("#project-key-2").value
         summary = self.query_one("#summary").value
         self.query_one("#button-7").disabled = True
@@ -321,6 +323,7 @@ class ScriptApp(App):
                 description,
                 issue_type,
                 label,
+                parent_key,
                 project_key,
                 summary,
             )
@@ -333,6 +336,7 @@ class ScriptApp(App):
             self.query_one("#issue-label").value = ""
             self.query_one("#summary").value = ""
             self.query_one("#issue-description").clear()
+            self.query_one("#parent").value = ""
             self.query_one("#project-key-2").clear()
             self.query_one("#button-7").disabled = False
             self.call_from_thread(
@@ -340,6 +344,10 @@ class ScriptApp(App):
             )
             self.call_from_thread(
                 self.query_one("#product-team-label").remove_class, "visible"
+            )
+            self.call_from_thread(self.query_one("#parent").remove_class, "visible")
+            self.call_from_thread(
+                self.query_one("#parent-label").remove_class, "visible"
             )
             self.call_from_thread(self.query_one("#summary").remove_class, "visible")
             self.call_from_thread(
@@ -588,6 +596,13 @@ class ScriptApp(App):
             except:
                 pass
 
+            try:
+                description = generate_task(self.query_one("#issue-type").value)
+
+                self.query_one("#issue-description").load_text(description)
+            except:
+                pass
+
             self.query_one("#summary-label").set_class(
                 event.value != Select.BLANK, "visible"
             )
@@ -598,6 +613,10 @@ class ScriptApp(App):
             self.query_one("#issue-description").set_class(
                 event.value != Select.BLANK, "visible"
             )
+            self.query_one("#parent-label").set_class(
+                event.value != Select.BLANK, "visible"
+            )
+            self.query_one("#parent").set_class(event.value != Select.BLANK, "visible")
             self.query_one("#bug-type").set_class(event.value == "Bug", "visible")
             self.query_one("#bug-type-label").set_class(event.value == "Bug", "visible")
             self.query_one("#components-label").set_class(
