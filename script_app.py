@@ -330,14 +330,14 @@ class ScriptApp(App):
 
             self.query_one("#affects-versions").value = "Master"
             self.query_one("#assign-to-me-2").value = False
-            self.query_one("#bug-type").clear()
+            # self.query_one("#bug-type").clear()
             self.query_one("#components").clear()
-            self.query_one("#issue-type").clear()
-            self.query_one("#issue-label").value = ""
+            # self.query_one("#issue-type").clear()
+            self.query_one("#issue-label").value = "release-test-failure"
             self.query_one("#summary").value = ""
-            self.query_one("#issue-description").clear()
-            self.query_one("#parent").value = ""
-            self.query_one("#project-key-2").clear()
+            self.query_one("#issue-description").value = ""
+            # self.query_one("#parent").value = ""
+            # self.query_one("#project-key-2").clear()
             self.query_one("#button-7").disabled = False
             self.call_from_thread(
                 self.query_one("#product-team").remove_class, "visible"
@@ -345,32 +345,32 @@ class ScriptApp(App):
             self.call_from_thread(
                 self.query_one("#product-team-label").remove_class, "visible"
             )
-            self.call_from_thread(self.query_one("#parent").remove_class, "visible")
-            self.call_from_thread(
-                self.query_one("#parent-label").remove_class, "visible"
-            )
-            self.call_from_thread(self.query_one("#summary").remove_class, "visible")
-            self.call_from_thread(
-                self.query_one("#summary-label").remove_class, "visible"
-            )
-            self.call_from_thread(self.query_one("#issue-type").remove_class, "visible")
-            self.call_from_thread(
-                self.query_one("#issue-type-label").remove_class, "visible"
-            )
-            self.call_from_thread(self.query_one("#bug-type").remove_class, "visible")
-            self.call_from_thread(
-                self.query_one("#bug-type-label").remove_class, "visible"
-            )
-            self.call_from_thread(
-                self.query_one("#issue-description").remove_class, "visible"
-            )
-            self.call_from_thread(
-                self.query_one("#issue-description-label").remove_class, "visible"
-            )
-            self.call_from_thread(self.query_one("#components").remove_class, "visible")
-            self.call_from_thread(
-                self.query_one("#components-label").remove_class, "visible"
-            )
+            # self.call_from_thread(self.query_one("#parent").remove_class, "visible")
+            # self.call_from_thread(
+            #     self.query_one("#parent-label").remove_class, "visible"
+            # )
+            # self.call_from_thread(self.query_one("#summary").remove_class, "visible")
+            # self.call_from_thread(
+            #     self.query_one("#summary-label").remove_class, "visible"
+            # )
+            # self.call_from_thread(self.query_one("#issue-type").remove_class, "visible")
+            # self.call_from_thread(
+            #     self.query_one("#issue-type-label").remove_class, "visible"
+            # )
+            # self.call_from_thread(self.query_one("#bug-type").remove_class, "visible")
+            # self.call_from_thread(
+            #     self.query_one("#bug-type-label").remove_class, "visible"
+            # )
+            # self.call_from_thread(
+            #     self.query_one("#issue-description").remove_class, "visible"
+            # )
+            # self.call_from_thread(
+            #     self.query_one("#issue-description-label").remove_class, "visible"
+            # )
+            # self.call_from_thread(self.query_one("#components").remove_class, "visible")
+            # self.call_from_thread(
+            #     self.query_one("#components-label").remove_class, "visible"
+            # )
             self.call_from_thread(
                 self.query_one("#affects-versions").remove_class, "visible"
             )
