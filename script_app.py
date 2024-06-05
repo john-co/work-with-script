@@ -185,7 +185,7 @@ class ScriptApp(App):
                         "Product Team:", id="product-team-label", classes="unselected"
                     )
                     yield Select(PRODUCT_TEAM, id="product-team", classes="unselected")
-                    yield TextField("Summary:", "summary", "unselected")
+                    yield TextField("Summary:", "summary", "unselected", value="Investigate test failure in ")
                     yield Label(
                         "Components:", id="components-label", classes="unselected"
                     )
@@ -334,8 +334,9 @@ class ScriptApp(App):
             self.query_one("#components").clear()
             # self.query_one("#issue-type").clear()
             self.query_one("#issue-label").value = "release-test-failure"
-            self.query_one("#summary").value = ""
-            self.query_one("#issue-description").value = ""
+            self.query_one("#summary").value = "Investigate test failures in "
+            self.query_one("#issue-description").clear()
+            self.query_one("#issue-description").text = "[Testray subtask|URL]\n{code:none}Error{code}"
             # self.query_one("#parent").value = ""
             # self.query_one("#project-key-2").clear()
             self.query_one("#button-7").disabled = False
@@ -637,6 +638,12 @@ class ScriptApp(App):
             self.query_one("#affects-versions-label").set_class(
                 event.value == "Bug", "visible"
             )
+            # self.query_one("#affects-versions").set_class(
+            #     event.value == "Task", "visible"
+            # )
+            # self.query_one("#affects-versions-label").set_class(
+            #     event.value == "Task", "visible"
+            # )
 
         elif event.select.id == "bug-type":
             try:
