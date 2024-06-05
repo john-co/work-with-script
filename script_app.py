@@ -336,7 +336,7 @@ class ScriptApp(App):
             self.query_one("#issue-label").value = "release-test-failure"
             self.query_one("#summary").value = "Investigate test failures in "
             self.query_one("#issue-description").clear()
-            self.query_one("#issue-description").text = "[Testray subtask|URL]\n{code:none}Error{code}"
+            self.query_one("#issue-description").text = "[Testray subtask|]\n{code:none}{code}"
             # self.query_one("#parent").value = ""
             # self.query_one("#project-key-2").clear()
             self.query_one("#button-7").disabled = False

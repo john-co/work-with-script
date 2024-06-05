@@ -165,8 +165,8 @@ def generate_description(type):
 def generate_task(type):
     if type == "Task":
         return (
-            "[Testray subtask|URL]\n"
-            + "{code:none}Error{code}")
+            "[Testray subtask|]\n"
+            + "{code:none}{code}")
 
 
 def get_project_components(jira_connection, project_key):
