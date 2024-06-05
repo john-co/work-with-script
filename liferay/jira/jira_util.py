@@ -52,6 +52,10 @@ def assign_to_me(assigned, jira_connection, issue):
         issue.update(fields={"assignee": {"accountId": jira_connection.current_user()}})
 
 
+def change_security(issue):
+    issue.update(fields={"security": {"name":"Private"}})
+
+
 def generate_comment(type):
     if type == "PID":
         return (
